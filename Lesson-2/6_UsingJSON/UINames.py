@@ -12,13 +12,16 @@ import requests
 
 
 def SampleRecord():
-    r = requests.get("http://uinames.com/api?ext&region=United%20States",
+    r = requests.get("http://randomuser.me/api/?inc=name,id&nat=us",
                      timeout=2.0)
     # 1. Add a line of code here to decode JSON from the response.
+    firstName = f"{r.json()['results'][0]['name']['first']}"
+    lastName = f"{r.json()['results'][0]['name']['last']}"
+    pinEntry = f"{r.json()['results'][0]['id']['value'][-4:]}"
 
-    return "My name is {} {} and the PIN on my card is {}.".format(
-        # 2. Add the correct fields from the JSON data structure.
-    )
+    # 2. Add the correct fields from the JSON data structure.
+
+    return f"My name is {firstName} {lastName} and the PIN on my card is {pinEntry}."
 
 if __name__ == '__main__':
     print(SampleRecord())

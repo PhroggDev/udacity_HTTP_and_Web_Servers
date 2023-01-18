@@ -75,7 +75,16 @@ def CheckURI(uri, timeout=5):
     (i.e. times out).
     '''
     # 1. Write this function.  Delete the following line.
-    raise NotImplementedError("Step 1 isn't written yet.")
+    #    raise NotImplementedError("Step 1 isn't written yet.")
+    try:
+        if (parse_qs(uri)):
+            r = requests.get(uri)
+    except:
+            return False
+            if (r.status_code == 200):
+                return True
+            else:
+                return False
 
 
 class Shortener(http.server.BaseHTTPRequestHandler):
@@ -83,6 +92,7 @@ class Shortener(http.server.BaseHTTPRequestHandler):
         # A GET request will either be for / (the root path) or for /some-name.
         # Strip off the / and we have either empty string or a name.
         name = unquote(self.path[1:])
+        memory = {}
 
         if name:
             if name in memory:

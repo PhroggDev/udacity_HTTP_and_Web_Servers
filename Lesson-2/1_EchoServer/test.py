@@ -10,7 +10,7 @@ words = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf",
          "Victor", "Whiskey", "Xray", "Yankee", "Zulu"]
 
 query = "".join(random.choice(words) for _ in range(3))
-uri = "http://localhost:8000/" + query
+uri = "http://localhost:8080/" + query
 print("Sending query for:", uri)
 try:
   r = requests.get(uri)
@@ -26,7 +26,7 @@ try:
     if output == "Hello, HTTP!":
       print("That looks like the hello server talking.")
 except requests.ConnectionError:
-  print("Couldn't connect to the server. Is it running on port 8000?")
+  print("Couldn't connect to the server. Is it running on port 8080?")
 except requests.RequestException as e:
   print("Couldn't communicate with the server ({})".format(e))
   print("If it's running, take a look at the server's output.")
